@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from photos.models import Photo
+from photos.models import Photo, VISIBILITY_PUBLIC
 
 
 def home(request):
@@ -8,6 +8,7 @@ def home(request):
     :param request: objeto HttpRequest con los datos de la petición
     :return: objeto HttpResponse con los datos de la respuesta
     """
-    photos = Photo.objects.all().order_by('-created_at')  # recupera todas las fotos de la base de datos
+    # recupera todas las fotos de la base de datos
+    photos = Photo.objects.filter(visibility=VISIBILITY_PUBLIC).order_by('-created_at')
     context = {'photos_list': photos[:4]}
     return render(request, 'photos/home.html', context)
