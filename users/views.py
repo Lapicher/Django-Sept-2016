@@ -39,3 +39,17 @@ def logout(request):
         django_logout(request)
     return redirect('/')
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
